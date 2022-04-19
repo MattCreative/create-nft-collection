@@ -1,3 +1,8 @@
+const basePath = process.cwd();
+const {
+  CHAIN,
+} = require(`${basePath}/src/config.js`);
+
 const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
 puppeteer.use(StealthPlugin());
@@ -17,8 +22,13 @@ async function txnCheck(url) {
     await page.waitForSelector("#ContentPlaceHolder1_maintable");
     
     try {
-      let cardText = await page.$eval("#ContentPlaceHolder1_maintable .row:nth-child(3) div:nth-child(2)", (text) => text.textContent);
+      let row_offest = 3;
+      if (CHAIN == "rinkeby") {
+        row_offest = 4;
+      }
+      let cardText = await page.$eval(`#ContentPlaceHolder1_maintable .row:nth-child(${row_offest}) div:nth-child(2)`, (text) => text.textContent);
       await browser.close();
+      console.log(cardText);
       resolve(cardText);
     } catch (error) {
       await browser.close();
