@@ -37,7 +37,7 @@ async function main() {
             ? txnData.mintData.response
             : txnData.updateData.response;
         const err =
-          dir === "minted" ? txnData.mintData.error : txnData.updateData.error;
+          (dir === "minted" ? txnData.mintData.error : txnData.updateData.error) || null;
         const verified =
           dir === "minted"
             ? txnData.mintData.transaction_verified
@@ -54,7 +54,6 @@ async function main() {
           success.push(edition);
           console.log(`Edition #${edition}: Transaction success!`);
         } else {
-          console.log(`Transaction URL: ${txUrl}`);
           let check = await txnCheck(txUrl);
           if (check === "Failed") {
             failed.push(edition);

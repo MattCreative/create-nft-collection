@@ -6,8 +6,8 @@ const { NETWORK } = require(`${basePath}/constants/network.js`);
 const network = NETWORK.eth;
 
 // General metadata for Ethereum
-const namePrefix = "defaultTokens2";
-const description = "Default Test Tokens for MattCreative";
+const namePrefix = "defaultTokens3";
+const description = "Default Test Tokens 3 for MattCreative";
 const baseUri = "ipfs://NewUriToReplace"; // This will be replaced automatically
 
 // If you have selected Solana then the collection starts from 0 automatically
@@ -46,8 +46,8 @@ const extraMetadata = {
 // ** REQUIRED **
 const AUTH = "9d3971a8-65fa-418d-9e94-d5d322d1de4f";
 const LIMIT = 2; // Your API key rate limit
-const CONTRACT_NAME = 'defaultTokens2';
-const CONTRACT_SYMBOL = 'DT2';
+const CONTRACT_NAME = 'defaultTokens3';
+const CONTRACT_SYMBOL = 'DT3';
 const CONTRACT_TYPE = 'erc721';
 const MINT_TO_ADDRESS = '0x9622C95e96b3324185c18AdAf47179cc1e7e5f51';
 const CHAIN = 'rinkeby';
@@ -57,9 +57,9 @@ const ROYALTY_ADDRESS = "0x9622C95e96b3324185c18AdAf47179cc1e7e5f51"; // Address
 // ** OPTIONAL **
 let CONTRACT_ADDRESS = "YOUR CONTRACT ADDRESS"; // If you want to manually include it
 // Generic Metadata is optional if you want to reveal your NFTs
-const GENERIC = false; // Set to true if you want to upload generic metas and reveal the real NFTs in the future
-const GENERIC_TITLE = "Unknown"; // Replace with what you want the generic titles to say.
-const GENERIC_DESCRIPTION = "Unknown"; // Replace with what you want the generic descriptions to say.
+const GENERIC = true; // Set to true if you want to upload generic metas and reveal the real NFTs in the future
+const GENERIC_TITLE = "Generic Title"; // Replace with what you want the generic titles to say.
+const GENERIC_DESCRIPTION = "A generic description so we can see how it looks"; // Replace with what you want the generic descriptions to say.
 const GENERIC_IMAGE = [
   "https://ipfs.io/ipfs/QmUf9tDbkqnfHkQaMdFWSGAeXwVXWA61pFED7ypx4hcsfh",
 ]; // Replace with your generic image(s). If multiple, separate with a comma.
@@ -72,7 +72,7 @@ try {
     `${basePath}/build/contract/_contract.json`
   );
   const contractData = JSON.parse(rawContractData);
-  if (contractData.response === "OK" && contractData.error === null) {
+  if (contractData.response === "OK") {
     CONTRACT_ADDRESS = contractData.contract_address;
   }
 } catch (error) {
